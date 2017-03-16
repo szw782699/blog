@@ -47,7 +47,7 @@ css中有3中定位机制： 普通流、浮动和绝对定位。
 ![absolute](https://raw.githubusercontent.com/szw782699/blog/master/assets/201703/absolute.png);
 
 ### 固定定位(position:fixed)
-固定定位时绝对定位的一种，差异在于固定定位相对于视窗(viewport)而定位
+固定定位是绝对定位的一种，差异在于固定定位相对于视窗(viewport)而定位
 
 ![fixed](https://raw.githubusercontent.com/szw782699/blog/master/assets/201703/fixed.png)
 
@@ -55,5 +55,105 @@ css中有3中定位机制： 普通流、浮动和绝对定位。
 
 
 ## 浮动
+
+任何元素都可以设置为float，块级元素div等可以，span/strong这样的行内元素也可以。任何被设为float的元素被自动块级化，可以有width和height属性  
+
+当一个元素被设置为float，，它就脱离正常的文档流，向左或向右移动，直到碰到包含框的边界或者另一个浮动元素的边界
+
+- 不浮动
+
+![not_float](https://raw.githubusercontent.com/szw782699/blog/master/assets/201703/not_float.png);
+
+- 将1设为float: right
+
+![float1](https://raw.githubusercontent.com/szw782699/blog/master/assets/201703/float1.png);
+
+- 将1设为float: left
+
+![float11](https://raw.githubusercontent.com/szw782699/blog/master/assets/201703/float11.png);
+
+将1 float left 后出现了 2 和3 重合的现象， 按正常的情况来说，应该是元素块2 隐藏在元素块1的下面(实际上检查元素也是如此)。
+
+那为什么2这个字母会出现在元素块3的位置？ 
+
+**浮动的元素脱离文档流，不再影响不浮动的元素。但是实际上，如果浮动的元素后面有一个文档流中的元素(如上图中的浮动元素1后面有元素块2)，那么这个元素(如2)的框表现的像浮动元素不存在一样，但是框内的文本内容会受到浮动元素的影响，会移动以留出空间。(如元素块2中的文字) 实际上浮动的本职工作应该是文字环绕显示**
+
+- 将1,2,3都设置为float
+  
+  1. 父元素的宽度能容纳三个总宽度
+
+  ![float_all_1](https://raw.githubusercontent.com/szw782699/blog/master/assets/201703/float_all_1.png);
+
+  2. 父元素宽度不能容纳三个元素
+
+  ![float_all_2](https://raw.githubusercontent.com/szw782699/blog/master/assets/201703/float_all_2.png);
+
+
+
+*** 
+
+##　浮动带来的问题
+
+浮动会造成高度塌陷: 只包含浮动元素的父元素如果没有指定高度，那么父元素的高度就始终是0，
+如果想为父元素添加背景就比较尴尬了。如下图(父元素设置了 padding:30px;margin:30px;):
+
+![高度塌陷](https://raw.githubusercontent.com/szw782699/blog/master/assets/201703/height_taxian.png);
+
+
+### 清除浮动
+
+#### clear: both
+
+![clear](https://raw.githubusercontent.com/szw782699/blog/master/assets/201703/clear_both_code.png);![clear](https://raw.githubusercontent.com/szw782699/blog/master/assets/201703/clear_both_code1.png);
+
+![clear](https://raw.githubusercontent.com/szw782699/blog/master/assets/201703/clear_both.png);
+
+实际上为什么最后一个div属性设置为clear:both 能达到效果呢？
+因为浏览器在元素顶上添加足够的外边距，使元素顶边缘垂直下降到浮动元素的下面
+
+#### overflow:auto|hidden
+
+父元素添加属性 overflow :auto 
+
+**overflow有三个值可以取 visible 不能清除浮动**
+
+这种方法在某些情况下会产生情况下会产生滚动条或截断内容
+
+![overflow_auto](https://raw.githubusercontent.com/szw782699/blog/master/assets/201703/overflow_auto.png);
+
+上图将1的文字增多,overflow:auto 产生滚动条，若为hidden则截断内容。
+
+#### :after伪类
+
+父元素设置
+
+```css
+xxx:after{
+    content:".";
+    display:block;/**必须的**/
+    visibility: hidden;
+    clear:both;   
+}
+```
+
+#### 使父容器形成BFC
+
+
+
+#### 父元素直接指定高度， 父元素设置为float，父元素设置为绝对定位
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
