@@ -138,9 +138,26 @@ xxx:after{
 
 #### 使父容器形成BFC
 
+##### 什么是BFC : Blocking Formatting Context(块级格式化上下文)。  
+首先Formatting Context是指页面中的一块渲染区域，有自己的渲染规则，它决定了子元素如何定位，以及和其他元素的相互作用。  
+BFC :是一个独立的的渲染区域，只有block-level的元素参与，规定了内部的block-level box 如何布局，并且这个区域与外部毫不相干。
+
+##### 怎样触发BFC
+
+1. float的值不为null
+1. overflow的值不为‘visible’
+1. display的值为“table-cell”，“table-caption”或者“inline-block”中的任何一个
+1. position的值不为static或relative中的任一个
+
+##### BFC 的布局规则
+
+* 内部的box在垂直方向，一个接一个放置
+* box垂直方向的距离由margin决定，属于同一个BFC的两个相邻BOX的margin会发生重叠
+* 每个元素margin的左边，与包含块border的左边相接触，即使存在浮动也是如此
+* BFC 的区域不会与相邻float box重叠(可以实现自适应两栏布局)
+* 计算BFC的高度时，浮动元素也参与计算（所以可以通过bfc来清除浮动）
 
 
-#### 父元素直接指定高度， 父元素设置为float，父元素设置为绝对定位
 
 
 
