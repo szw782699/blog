@@ -11,7 +11,8 @@
 
 >可以在调用template函数的时候传入settings参数自己设置模板分隔符(我没试过)
 
-##　模板函数实现的原理
+
+## 模板函数实现的原理
 
 整体思路是将模板字符串经过正则解析，预留需要填入数据的位置，拼接成一个目标字符串，然后通过new Funciton()动态执行这个字符串，执行的过程将数据填入，然后返回填入数据的html字符串，就实现了想要的功能。
 
@@ -61,7 +62,7 @@ text是需要解析的字符串，matcher为一个RegExp对象，具体为 /<%-(
 
 全局匹配下的replace会多次调用其中的方法，每一次匹配都会调用，具体的escape为第一个括号匹配的字符串，interpolate为第二个，evaluate为第三个，offset为在源字符串的偏移量。
 
-在匹配之前定义 index=0，source="__p+="，之后的每一次匹配都会执行下面的语句用来截取在模板分隔符之外的html字符串，如上例的"<ul>"(省略了空格)
+在匹配之前定义 index=0，source="__p+="，之后的每一次匹配都会执行下面的语句用来截取在模板分隔符之外的html字符串，如上例的"`<ul>`"(省略了空格)
 
 ```js
     source += text.slice(index, offset).replace(escapeRegExp, escapeChar); // 转义特殊的符号，让new Function()顺利执行。
