@@ -7,5 +7,6 @@
     * [css 盒模型，浮动和定位](https://github.com/szw782699/blog/issues/2)
 
 * 前端模板引擎
-    * [underscore中的模板函数](https://github.com/szw782699/blog/issues/3)  
+    * [underscore中的模板函数](https://github.com/szw782699/blog/issues/3)
+    
     * [mustache源码阅读](https://github.com/szw782699/blog/issues/4)
