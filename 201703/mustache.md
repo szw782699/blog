@@ -286,7 +286,7 @@ tokens已经生成，接下类就是渲染。这个方法里面用到了Context�
 
 ## 总结
 
-想比于underscore的_.templates函数是直接拼接字符串通过new Function() 来赋值。  
+相比于underscore的_.templates函数是直接拼接字符串通过new Function() 来赋值。  
 mustache 根据自己的语法规则进行解析生成tokens，然后tokens + data --> html。   
 Context类里面几乎没介绍，context主要是访问数据用cache缓村提高性能。  
 看了两天，感觉稍微有了那么点意思，记录下来，用以备忘。
